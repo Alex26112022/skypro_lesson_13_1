@@ -1,5 +1,5 @@
 class Category:
-    """ Здесь будет описание. """
+    """ Описывает категории. """
     name: str
     description: str
     products: list

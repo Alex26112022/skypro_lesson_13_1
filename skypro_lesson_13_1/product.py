@@ -1,12 +1,12 @@
 class Product:
-    """ Здесь будет описание. """
+    """ Описывает товары. """
     name: str
     description: str
     price: float
-    amount: int
+    quantity: int
 
-    def __init__(self, name, description, price, amount):
+    def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
         self.price = price
-        self.amount = amount
+        self.quantity = quantity
