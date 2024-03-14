@@ -16,17 +16,14 @@ def load_json(json_path):
 def generate_products(json_path):
     """ Генерирует объекты классов. """
     category_list = []
-    products_list = []
+    # products_list = []
     for el in load_json(json_path):
         category_list.append(Category(el['name'], el['description'],
-                                      list(map(lambda x: x["name"],
-                                               el['products']))))
+                                      list(map(lambda x: Product(x['name'],
+                                           x['description'], x['price'],
+                                           x['quantity']), el['products']))))
 
-        for item in el['products']:
-            products_list.append(Product(item['name'], item['description'],
-                                         item['price'], item['quantity']))
-
-    return category_list, products_list
+    return category_list
 
 
 if __name__ == '__main__':
