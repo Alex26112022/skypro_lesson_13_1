@@ -37,5 +37,12 @@ def test_init_category(create_category_1):
     """ Проверяет инициализацию класса Category. """
     assert create_category_1.name == 'Книги'
     assert create_category_1.description == 'Печатная продукция'
-    assert create_category_1.products == ['Война и мир', 'Вий', 'Мастер и '
-                                                                'Маргарита']
+    assert create_category_1.get_products() == ['Война и мир', 'Вий',
+                                                'Мастер и Маргарита']
+
+
+def test_add_products(create_category_1):
+    """ Проверяет добавление товаров. """
+    create_category_1.add_products('Идиот')
+    assert create_category_1.get_products() == ['Война и мир', 'Вий',
+                                                'Мастер и Маргарита', 'Идиот']
