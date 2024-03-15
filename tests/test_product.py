@@ -8,6 +8,14 @@ def test_product(create_product_book_1):
     assert create_product_book_1.description == 'Художественный роман'
     assert create_product_book_1.price_ == 2150.23
     assert create_product_book_1.quantity == 15
+    assert create_product_book_1.__dict__ == {'_Product__price': 2150.23,
+                                              'description': 'Художественный роман',
+                                              'name': 'Война и мир',
+                                              'quantity': 15}
+    del create_product_book_1.price_
+    assert create_product_book_1.__dict__ == {'description': 'Художественный роман',
+                                              'name': 'Война и мир',
+                                              'quantity': 15}
 
 
 def test_create_product():

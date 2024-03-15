@@ -32,3 +32,8 @@ class Product:
                 self.__price = price
         else:
             self.__price = price
+
+    @price_.deleter
+    def price_(self):
+        """ Удаляет аттрибут цена """
+        del self.__price
