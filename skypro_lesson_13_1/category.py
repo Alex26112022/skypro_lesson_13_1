@@ -26,7 +26,7 @@ class Category:
         for el in self.__products:
             if new_product.name.lower() == el.name.lower():
                 el.quantity += new_product.quantity
-                el.price = max(el.price, new_product.price)
+                el.price_ = max(el.price_, new_product.price_)
                 return
         self.__products.append(new_product)
 
@@ -38,5 +38,5 @@ class Category:
     def prod(self):
         """ Выводит данные о продуктах категории в заданном формате. """
         for el in self.__products:
-            print(f'{el.name}, {el.price} руб. Остаток: {el.quantity} шт.')
+            print(f'{el.name}, {el.price_} руб. Остаток: {el.quantity} шт.')
         return self.__products
