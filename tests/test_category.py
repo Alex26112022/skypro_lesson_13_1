@@ -26,6 +26,11 @@ def test_add_products(create_category_book):
     assert len(create_category_book._get_products()) == 3
     assert type(create_category_book._get_products()[2]) == Product
     assert create_category_book._get_products()[2].description == 'Газета'
+    create_category_book.add_products('Из рук в руки', 'Газета',
+                                      400.00, 15)
+    assert len(create_category_book._get_products()) == 3
+    assert create_category_book._get_products()[2].price == 400.00
+    assert create_category_book._get_products()[2].quantity == 230
 
 
 def test_prod(create_category_toy):
@@ -41,3 +46,13 @@ def test_add_create_product(create_category_book):
     assert len(create_category_book._get_products()) == 3
     assert type(create_category_book._get_products()[2]) == Product
     assert create_category_book._get_products()[2].description == 'Журнал для автолюбителей'
+    create_category_book.add_products('Автомир', 'Журнал для автолюбителей',
+                                      400.00, 3)
+    assert len(create_category_book._get_products()) == 3
+    assert create_category_book._get_products()[2].price == 500.00
+    assert create_category_book._get_products()[2].quantity == 40
+    create_category_book.add_products('Автомир', 'Журнал для автолюбителей',
+                                      600.00, 10)
+    assert len(create_category_book._get_products()) == 3
+    assert create_category_book._get_products()[2].price == 600.00
+    assert create_category_book._get_products()[2].quantity == 50
