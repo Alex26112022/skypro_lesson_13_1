@@ -2,7 +2,7 @@ class Product:
     """ Описывает товары. """
     name: str
     description: str
-    price: float
+    __price: float
     quantity: int
 
     def __init__(self, name, description, price, quantity):
@@ -26,4 +26,9 @@ class Product:
     @price_.setter
     def price_(self, price):
         """ Изменяет цену. """
-        self.__price = price
+        if price < self.__price:
+            user_input = input('Подтвердите понижение цены: [y/n] ')
+            if user_input.lower() == 'y':
+                self.__price = price
+        else:
+            self.__price = price

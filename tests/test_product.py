@@ -20,3 +20,5 @@ def test_create_product():
     assert new_product.description == 'Журнал для автолюбителей'
     assert new_product.price_ == 0
     assert new_product.quantity == 37
+    new_product.price_ = 5
+    assert new_product.price_ == 5

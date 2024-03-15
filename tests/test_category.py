@@ -9,6 +9,11 @@ def test_count_category(create_category_book, create_category_toy):
     category2 = create_category_toy
     assert category1.count_name == 2
     assert category1.count_products == 5
+    category2.add_products('тетрис', 'карманное электронное устройство',
+                           4500.70, 20)
+    assert category1.count_name == 2
+    assert category2.count_name == 2
+    assert category1.count_products == 6
 
 
 def test_init_category(create_category_toy):
@@ -35,7 +40,9 @@ def test_add_products(create_category_book):
 
 def test_prod(create_category_toy):
     """ Тестирует вывод информации. """
-    assert create_category_toy.prod
+    assert create_category_toy.prod == ('мяч, 5000.4 руб. Остаток: 42 шт.\n'
+                                        'шахматы, 2100.0 руб. Остаток: 14 шт.\n'
+                                        'Xbox, 40000.0 руб. Остаток: 5 шт.\n')
 
 
 def test_add_create_product(create_category_book):

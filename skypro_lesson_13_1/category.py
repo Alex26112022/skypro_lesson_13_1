@@ -29,6 +29,7 @@ class Category:
                 el.price_ = max(el.price_, new_product.price_)
                 return
         self.__products.append(new_product)
+        Category.count_products += 1
 
     def _get_products(self):
         """ Возвращает список товаров. """
@@ -37,6 +38,7 @@ class Category:
     @property
     def prod(self):
         """ Выводит данные о продуктах категории в заданном формате. """
+        info_str = ''
         for el in self.__products:
-            print(f'{el.name}, {el.price_} руб. Остаток: {el.quantity} шт.')
-        return self.__products
+            info_str += f'{el.name}, {el.price_} руб. Остаток: {el.quantity} шт.\n'
+        return info_str
