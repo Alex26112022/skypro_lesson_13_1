@@ -21,7 +21,14 @@ class Category:
 
     def add_products(self, name, description, price, quantity):
         """ Добавляет товар. """
-        self.__products.append(Product.create_product(name, description, price, quantity))
+        new_product = Product.create_product(name, description, price,
+                                             quantity)
+        for el in self.__products:
+            if new_product.name.lower() == el.name.lower():
+                el.quantity += new_product.quantity
+                el.price = max(el.price, new_product.price)
+                return
+        self.__products.append(new_product)
 
     def _get_products(self):
         """ Возвращает список товаров. """
