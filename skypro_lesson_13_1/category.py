@@ -23,6 +23,13 @@ class Category:
         """ Добавляет товар. """
         self.__products.append(Product(name, description, price, quantity))
 
-    def get_products(self):
+    def _get_products(self):
         """ Возвращает список товаров. """
+        return self.__products
+
+    @property
+    def prod(self):
+        """ Выводит данные о продуктах категории в заданном формате. """
+        for el in self.__products:
+            print(f'{el.name}, {el.price} руб. Остаток: {el.quantity} шт.')
         return self.__products

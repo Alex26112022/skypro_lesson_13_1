@@ -15,14 +15,19 @@ def test_init_category(create_category_toy):
     """ Проверяет инициализацию класса Category. """
     assert create_category_toy.name == 'Игрушки'
     assert create_category_toy.description == 'Сфера развлечений'
-    assert create_category_toy.get_products()[0].name == 'мяч'
+    assert create_category_toy._get_products()[0].name == 'мяч'
 
 
 def test_add_products(create_category_book):
     """ Проверяет добавление товаров. """
-    assert len(create_category_book.get_products()) == 2
+    assert len(create_category_book._get_products()) == 2
     create_category_book.add_products('Из рук в руки', 'Газета',
                                       200.30, 215)
-    assert len(create_category_book.get_products()) == 3
-    assert type(create_category_book.get_products()[2]) == Product
-    assert create_category_book.get_products()[2].description == 'Газета'
+    assert len(create_category_book._get_products()) == 3
+    assert type(create_category_book._get_products()[2]) == Product
+    assert create_category_book._get_products()[2].description == 'Газета'
+
+
+def test_prod(create_category_toy):
+    """ Тестирует вывод информации. """
+    assert create_category_toy.prod
