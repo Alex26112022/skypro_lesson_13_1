@@ -16,7 +16,6 @@ def load_json(json_path):
 def generate_products(json_path):
     """ Генерирует объекты классов. """
     category_list = []
-    # products_list = []
     for el in load_json(json_path):
         category_list.append(Category(el['name'], el['description'],
                                       list(map(lambda x: Product(x['name'],

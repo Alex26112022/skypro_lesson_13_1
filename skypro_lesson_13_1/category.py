@@ -1,3 +1,6 @@
+from skypro_lesson_13_1.product import Product
+
+
 class Category:
     """ Описывает категории. """
     name: str
@@ -6,8 +9,8 @@ class Category:
     count_name: int
     count_products: int
 
-    count_name = 0
-    count_products = 0
+    count_name = 0  # Счетчик категорий.
+    count_products = 0  # Счетчик уникальных товаров.
 
     def __init__(self, name, description, products):
         self.name = name
@@ -16,8 +19,10 @@ class Category:
         Category.count_name += 1
         Category.count_products += len(self.__products)
 
-    def add_products(self, product):
-        self.__products.append(product)
+    def add_products(self, name, description, price, quantity):
+        """ Добавляет товар. """
+        self.__products.append(Product(name, description, price, quantity))
 
     def get_products(self):
+        """ Возвращает список товаров. """
         return self.__products

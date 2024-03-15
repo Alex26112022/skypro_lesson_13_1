@@ -1,48 +1,28 @@
 import pytest
 from skypro_lesson_13_1.category import Category
+from skypro_lesson_13_1.product import Product
 
 
-@pytest.fixture()
-def create_category_1():
-    """ Создает экземпляр 1 класса Category. """
-    return Category('Книги', 'Печатная продукция',
-                    ['Война и мир', 'Вий', 'Мастер и Маргарита'])
-
-
-@pytest.fixture()
-def create_category_2():
-    """ Создает экземпляр 2 класса Category. """
-    return Category('Игрушки', 'Товары для детей',
-                    ['машинка', 'вертолет', 'мяч', 'пистолет'])
-
-
-@pytest.fixture()
-def create_category_3():
-    """ Создает экземпляр 3 класса Category. """
-    return Category('Настольные игры', 'Развлечения для компании',
-                    ['Покер', 'Мафия'])
-
-
-def test_count_category(create_category_1, create_category_2,
-                        create_category_3):
+def test_count_category(create_category_book, create_category_toy):
     """ Проверяет счетчики категорий и товаров. """
-    category1 = create_category_1
-    category2 = create_category_2
-    category3 = create_category_3
-    assert category1.count_name == 3
-    assert category1.count_products == 9
+    category1 = create_category_book
+    category2 = create_category_toy
+    assert category1.count_name == 2
+    assert category1.count_products == 5
 
 
-def test_init_category(create_category_1):
+def test_init_category(create_category_toy):
     """ Проверяет инициализацию класса Category. """
-    assert create_category_1.name == 'Книги'
-    assert create_category_1.description == 'Печатная продукция'
-    assert create_category_1.get_products() == ['Война и мир', 'Вий',
-                                                'Мастер и Маргарита']
+    assert create_category_toy.name == 'Игрушки'
+    assert create_category_toy.description == 'Сфера развлечений'
+    assert create_category_toy.get_products()[0].name == 'мяч'
 
 
-def test_add_products(create_category_1):
+def test_add_products(create_category_book):
     """ Проверяет добавление товаров. """
-    create_category_1.add_products('Идиот')
-    assert create_category_1.get_products() == ['Война и мир', 'Вий',
-                                                'Мастер и Маргарита', 'Идиот']
+    assert len(create_category_book.get_products()) == 2
+    create_category_book.add_products('Из рук в руки', 'Газета',
+                                      200.30, 215)
+    assert len(create_category_book.get_products()) == 3
+    assert type(create_category_book.get_products()[2]) == Product
+    assert create_category_book.get_products()[2].description == 'Газета'
