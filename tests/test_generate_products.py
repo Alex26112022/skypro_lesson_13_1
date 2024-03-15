@@ -15,7 +15,10 @@ def test_load_json():
 
 def test_generate_products():
     """ Тест генератора объектов классов. """
-    assert type(generate_products(products_json_test)) == tuple
+    assert type(generate_products(products_json_test)) == list
     assert len(generate_products(products_json_test)) == 2
-    assert type(generate_products(products_json_test)[0][0]) == Category
-    assert type(generate_products(products_json_test)[1][0]) == Product
+    assert type(generate_products(products_json_test)[0]) == Category
+    assert type(generate_products(products_json_test)[1]) == Category
+    assert generate_products(products_json_test)[0].name == 'Смартфоны'
+    assert (generate_products(products_json_test)[0]._get_products()[0].name
+            == 'Samsung Galaxy C23 Ultra')
