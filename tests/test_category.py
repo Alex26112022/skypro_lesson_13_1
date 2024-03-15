@@ -31,3 +31,13 @@ def test_add_products(create_category_book):
 def test_prod(create_category_toy):
     """ Тестирует вывод информации. """
     assert create_category_toy.prod
+
+
+def test_add_create_product(create_category_book):
+    """ Проверка добавления объекта через класс-метод класса Product. """
+    assert len(create_category_book._get_products()) == 2
+    create_category_book.add_products('Автомир', 'Журнал для автолюбителей',
+                                      500.00, 37)
+    assert len(create_category_book._get_products()) == 3
+    assert type(create_category_book._get_products()[2]) == Product
+    assert create_category_book._get_products()[2].description == 'Журнал для автолюбителей'
