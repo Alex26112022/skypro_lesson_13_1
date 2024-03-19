@@ -5,10 +5,10 @@ class Product:
     __price: float
     quantity: int
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name, description, price_, quantity):
         self.name = name
         self.description = description
-        self.__price = price
+        self.__price = price_
         self.quantity = quantity
 
     @classmethod
@@ -17,23 +17,23 @@ class Product:
         return cls(name, description, price, quantity)
 
     @property
-    def price_(self):
+    def price(self):
         """ Возвращает цену. """
         if self.__price == 0:
             print('Цена введена некорректная!')
         return self.__price
 
-    @price_.setter
-    def price_(self, price):
+    @price.setter
+    def price(self, price_):
         """ Изменяет цену. """
-        if price < self.__price:
+        if price_ < self.__price:
             user_input = input('Подтвердите понижение цены: [y/n] ')
             if user_input.lower() == 'y':
-                self.__price = price
+                self.__price = price_
         else:
-            self.__price = price
+            self.__price = price_
 
-    @price_.deleter
-    def price_(self):
+    @price.deleter
+    def price(self):
         """ Удаляет аттрибут цена """
         del self.__price

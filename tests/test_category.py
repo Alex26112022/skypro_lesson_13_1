@@ -34,15 +34,16 @@ def test_add_products(create_category_book):
     create_category_book.add_products('Из рук в руки', 'Газета',
                                       400.00, 15)
     assert len(create_category_book._get_products()) == 3
-    assert create_category_book._get_products()[2].price_ == 400.00
+    assert create_category_book._get_products()[2].price == 400.00
     assert create_category_book._get_products()[2].quantity == 230
 
 
 def test_prod(create_category_toy):
     """ Тестирует вывод информации. """
-    assert create_category_toy.prod == ('мяч, 5000.4 руб. Остаток: 42 шт.\n'
-                                        'шахматы, 2100.0 руб. Остаток: 14 шт.\n'
-                                        'Xbox, 40000.0 руб. Остаток: 5 шт.\n')
+    assert create_category_toy.prod == ['мяч, 5000.4 руб. Остаток: 42 шт.\n',
+                                        'шахматы, 2100.0 руб. Остаток: 14 '
+                                        'шт.\n',
+                                        'Xbox, 40000.0 руб. Остаток: 5 шт.\n']
 
 
 def test_add_create_product(create_category_book):
@@ -56,10 +57,10 @@ def test_add_create_product(create_category_book):
     create_category_book.add_products('Автомир', 'Журнал для автолюбителей',
                                       400.00, 3)
     assert len(create_category_book._get_products()) == 3
-    assert create_category_book._get_products()[2].price_ == 500.00
+    assert create_category_book._get_products()[2].price == 500.00
     assert create_category_book._get_products()[2].quantity == 40
     create_category_book.add_products('Автомир', 'Журнал для автолюбителей',
                                       600.00, 10)
     assert len(create_category_book._get_products()) == 3
-    assert create_category_book._get_products()[2].price_ == 600.00
+    assert create_category_book._get_products()[2].price == 600.00
     assert create_category_book._get_products()[2].quantity == 50
