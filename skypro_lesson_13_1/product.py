@@ -37,3 +37,6 @@ class Product:
     def price(self):
         """ Удаляет аттрибут цена """
         del self.__price
+
+    def __str__(self):
+        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
