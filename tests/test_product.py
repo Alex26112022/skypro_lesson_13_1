@@ -35,3 +35,8 @@ def test_create_product():
 
 def test_str(create_product_book_1):
     print(create_product_book_1)
+
+
+def test_add(create_product_toy_1, create_product_toy_2):
+    """ Проверяет суммирование стоимости товаров. """
+    assert create_product_toy_1 + create_product_toy_2 == 239416.8
