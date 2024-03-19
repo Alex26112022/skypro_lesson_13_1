@@ -53,7 +53,8 @@ def test_add_create_product(create_category_book):
                                       500.00, 37)
     assert len(create_category_book._get_products()) == 3
     assert type(create_category_book._get_products()[2]) == Product
-    assert create_category_book._get_products()[2].description == 'Журнал для автолюбителей'
+    assert create_category_book._get_products()[
+               2].description == 'Журнал для автолюбителей'
     create_category_book.add_products('Автомир', 'Журнал для автолюбителей',
                                       400.00, 3)
     assert len(create_category_book._get_products()) == 3
@@ -64,3 +65,12 @@ def test_add_create_product(create_category_book):
     assert len(create_category_book._get_products()) == 3
     assert create_category_book._get_products()[2].price == 600.00
     assert create_category_book._get_products()[2].quantity == 50
+
+
+def test_len(create_category_toy):
+    """ Проверяет общее количество товаров на складе для заданной категории. """
+    assert len(create_category_toy) == 61
+
+
+def test_str(create_category_toy):
+    print(create_category_toy)

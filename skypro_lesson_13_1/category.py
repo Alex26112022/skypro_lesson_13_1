@@ -43,3 +43,15 @@ class Category:
             info_str.append(f'{el.name}, {el.price} руб. Остаток:'
                             f' {el.quantity} шт.\n')
         return info_str
+
+    def __len__(self):
+        """
+        Возвращает общее количество товаров заданной категории на складе.
+        """
+        all_products = 0
+        for el in self.__products:
+            all_products += el.quantity
+        return all_products
+
+    def __str__(self):
+        return f'{self.name}, количество продуктов: {len(self)} шт.'

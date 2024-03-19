@@ -13,9 +13,10 @@ def test_product(create_product_book_1):
                                               'name': 'Война и мир',
                                               'quantity': 15}
     del create_product_book_1.price
-    assert create_product_book_1.__dict__ == {'description': 'Художественный роман',
-                                              'name': 'Война и мир',
-                                              'quantity': 15}
+    assert create_product_book_1.__dict__ == {
+        'description': 'Художественный роман',
+        'name': 'Война и мир',
+        'quantity': 15}
 
 
 def test_create_product():
@@ -30,3 +31,7 @@ def test_create_product():
     assert new_product.quantity == 37
     new_product.price = 5
     assert new_product.price == 5
+
+
+def test_str(create_product_book_1):
+    print(create_product_book_1)
