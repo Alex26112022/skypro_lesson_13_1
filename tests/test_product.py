@@ -39,6 +39,18 @@ def test_str(create_product_book_1):
     print(create_product_book_1)
 
 
-def test_add(create_product_toy_1, create_product_toy_2):
+def test_add(create_product_toy_1, create_product_toy_2,
+             create_smartphone_1, create_smartphone_2):
     """ Проверяет суммирование стоимости товаров. """
     assert create_product_toy_1 + create_product_toy_2 == 239416.8
+    assert create_smartphone_1 + create_smartphone_2 == 4400000
+
+
+def test_add_error(create_product_book_1, create_smartphone_1,
+                   create_lawn_glass_1):
+    """ Проверяет невозможность суммирования товаров разных классов. """
+    with pytest.raises(TypeError):
+        create_product_book_1 + create_smartphone_1
+        create_product_book_1 + create_lawn_glass_1
+        create_smartphone_1 + create_lawn_glass_1
+

@@ -48,5 +48,7 @@ class Product:
         Возвращает общую стоимость суммированных товаров с учетом их
         количества на складе.
         """
-        return (self.__price * self.quantity) + (other.__price *
-                                                 other.quantity)
+        if type(self) is type(other):
+            return (self.__price * self.quantity) + (other.__price *
+                                                     other.quantity)
+        raise TypeError('Товары принадлежат разным классам!')
