@@ -4,12 +4,14 @@ class Product:
     description: str
     __price: float
     quantity: int
+    color: str
 
-    def __init__(self, name, description, price_, quantity):
+    def __init__(self, name, description, price, quantity, color=None):
         self.name = name
         self.description = description
-        self.__price = price_
+        self.__price = price
         self.quantity = quantity
+        self.color = color
 
     @classmethod
     def create_product(cls, name, description, price, quantity):
