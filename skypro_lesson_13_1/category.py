@@ -1,4 +1,6 @@
+from skypro_lesson_13_1.lawn_grass import LawnGrass
 from skypro_lesson_13_1.product import Product
+from skypro_lesson_13_1.smartphone import Smartphone
 
 
 class Category:
@@ -15,7 +17,13 @@ class Category:
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.__products = products
+        if isinstance(products, list) and len(products) == 0:
+            self.__products = products
+        elif isinstance(products, list) and len(products) > 0 and all(map(lambda x: isinstance(x, Product), products)):
+            self.__products = products
+        else:
+            raise TypeError('products может быть списком с объектами класса'
+                            'Product и его наследниками!!!')
         Category.count_name += 1
         Category.count_products += len(self.__products)
 
