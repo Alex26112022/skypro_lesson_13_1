@@ -74,3 +74,15 @@ def test_len(create_category_toy):
 
 def test_str(create_category_toy):
     print(create_category_toy)
+
+
+def test_len_smartphone(create_category_smartphone):
+    """ Проверяет общее количество товаров на складе для категории смартфон. """
+    assert len(create_category_smartphone) == 260
+
+
+def test_len_lawn_grass(create_category_grass):
+    """
+    Проверяет общее количество товаров на складе для категории трава газонная.
+    """
+    assert len(create_category_grass) == 55

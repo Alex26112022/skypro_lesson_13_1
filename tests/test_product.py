@@ -9,11 +9,13 @@ def test_product(create_product_book_1):
     assert create_product_book_1.price == 2150.23
     assert create_product_book_1.quantity == 15
     assert create_product_book_1.__dict__ == {'_Product__price': 2150.23,
+                                              'color': None,
                                               'description': 'Художественный роман',
                                               'name': 'Война и мир',
                                               'quantity': 15}
     del create_product_book_1.price
     assert create_product_book_1.__dict__ == {
+        'color': None,
         'description': 'Художественный роман',
         'name': 'Война и мир',
         'quantity': 15}
