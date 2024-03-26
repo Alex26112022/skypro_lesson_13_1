@@ -16,11 +16,21 @@ def test_count_category(create_category_book, create_category_toy):
     assert category1.count_products == 6
 
 
-def test_init_category(create_category_toy):
+def test_init_category(create_category_toy, create_category_smartphone,
+                       create_category_grass):
     """ Проверяет инициализацию класса Category. """
     assert create_category_toy.name == 'Игрушки'
     assert create_category_toy.description == 'Сфера развлечений'
     assert create_category_toy._get_products()[0].name == 'мяч'
+
+    assert create_category_smartphone.name == 'Смартфоны'
+    assert create_category_grass.name == 'Трава газонная'
+
+
+def test_init_category_error():
+    """ Проверяет попытку неправильной инициализации категории. """
+    with pytest.raises(TypeError):
+        assert Category('test_name', 'test_description', 'test_str')
 
 
 def test_add_products(create_category_book):
@@ -74,3 +84,15 @@ def test_len(create_category_toy):
 
 def test_str(create_category_toy):
     print(create_category_toy)
+
+
+def test_len_smartphone(create_category_smartphone):
+    """ Проверяет общее количество товаров на складе для категории смартфон. """
+    assert len(create_category_smartphone) == 260
+
+
+def test_len_lawn_grass(create_category_grass):
+    """
+    Проверяет общее количество товаров на складе для категории трава газонная.
+    """
+    assert len(create_category_grass) == 55
