@@ -27,10 +27,8 @@ class Category:
         Category.count_name += 1
         Category.count_products += len(self.__products)
 
-    def add_products(self, name, description, price, quantity):
+    def add_products(self, new_product: Product):
         """ Добавляет товар. """
-        new_product = Product.create_product(name, description, price,
-                                             quantity)
         for el in self.__products:
             if new_product.name.lower() == el.name.lower():
                 el.quantity += new_product.quantity
