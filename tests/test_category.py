@@ -1,6 +1,9 @@
 import pytest
 from skypro_lesson_13_1.category import Category
+from skypro_lesson_13_1.lawn_grass import LawnGrass
 from skypro_lesson_13_1.product import Product
+from skypro_lesson_13_1.smartphone import Smartphone
+from tests.class_test import ClassTest
 
 
 def test_count_category(create_category_book, create_category_toy):
@@ -33,7 +36,8 @@ def test_init_category_error():
         assert Category('test_name', 'test_description', 'test_str')
 
 
-def test_add_products(create_category_book):
+def test_add_products(create_category_book, create_category_smartphone,
+                      create_category_grass):
     """ Проверяет добавление товаров. """
     assert len(create_category_book._get_products()) == 2
     create_category_book.add_products(Product('Из рук в руки', 'Газета',
@@ -46,6 +50,33 @@ def test_add_products(create_category_book):
     assert len(create_category_book._get_products()) == 3
     assert create_category_book._get_products()[2].price == 400.00
     assert create_category_book._get_products()[2].quantity == 230
+    assert len(create_category_smartphone._get_products()) == 3
+    assert str(
+        create_category_smartphone) == 'Смартфоны, количество продуктов: 260 шт.'
+    create_category_smartphone.add_products(Smartphone(
+        'RuPhone', 'Русская версия айфона', 40000,
+        10, 'orange', 700, 'NewPro', 1024))
+    assert len(create_category_smartphone._get_products()) == 4
+    assert str(
+        create_category_smartphone) == 'Смартфоны, количество продуктов: 270 шт.'
+    assert len(create_category_grass._get_products()) == 2
+    assert str(
+        create_category_grass) == 'Трава газонная, количество продуктов: 55 шт.'
+    create_category_grass.add_products(LawnGrass(
+        'Какая-то трава', 'Просто трава', 5000, 40,
+        'red', 'USA', 60))
+    assert len(create_category_grass._get_products()) == 3
+    assert str(
+        create_category_grass) == 'Трава газонная, количество продуктов: 95 шт.'
+
+
+def test_add_product_error(create_category_smartphone):
+    """ Проверяет попытку добавить посторонний объект. """
+    with pytest.raises(TypeError) as type_error:
+        create_category_smartphone.add_products(ClassTest(
+            'test_name', 'test description', 100, 10
+        ))
+    assert type_error.value.args[0] == 'Добавить можно только объект класса Product и его наследников!!!'
 
 
 def test_prod(create_category_toy):

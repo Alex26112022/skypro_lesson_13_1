@@ -29,13 +29,17 @@ class Category:
 
     def add_products(self, new_product: Product):
         """ Добавляет товар. """
-        for el in self.__products:
-            if new_product.name.lower() == el.name.lower():
-                el.quantity += new_product.quantity
-                el.price = max(el.price, new_product.price)
-                return
-        self.__products.append(new_product)
-        Category.count_products += 1
+        if isinstance(new_product, Product):
+            for el in self.__products:
+                if new_product.name.lower() == el.name.lower():
+                    el.quantity += new_product.quantity
+                    el.price = max(el.price, new_product.price)
+                    return
+            self.__products.append(new_product)
+            Category.count_products += 1
+        else:
+            raise TypeError('Добавить можно только объект класса Product и '
+                            'его наследников!!!')
 
     def _get_products(self):
         """ Возвращает список товаров. """
