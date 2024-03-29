@@ -20,5 +20,5 @@ def test_generate_products():
     assert type(generate_products(products_json_test)[0]) == Category
     assert type(generate_products(products_json_test)[1]) == Category
     assert generate_products(products_json_test)[0].name == 'Смартфоны'
-    assert (generate_products(products_json_test)[0]._get_products()[0].name
+    assert (generate_products(products_json_test)[0].get_products()[0].name
             == 'Samsung Galaxy C23 Ultra')

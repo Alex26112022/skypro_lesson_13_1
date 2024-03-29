@@ -6,7 +6,7 @@ class AbcProduct(ABC):
 
     @classmethod
     @abstractmethod
-    def create_product(cls, name, description, price, quantity):
+    def create_product(cls):
         pass
 
     @abstractmethod
