@@ -9,6 +9,9 @@ def test_product(create_product_book_1):
     assert create_product_book_1.price == 2150.23
     assert create_product_book_1.quantity == 15
     assert create_product_book_1.__dict__ == {'_Product__price': 2150.23,
+                                              'args': ('Война и мир',
+                                                       'Художественный роман',
+                                                       2150.23, 15),
                                               'color': None,
                                               'description': 'Художественный роман',
                                               'name': 'Война и мир',
@@ -16,9 +19,12 @@ def test_product(create_product_book_1):
     del create_product_book_1.price
     assert create_product_book_1.__dict__ == {
         'color': None,
+        'args': ('Война и мир', 'Художественный роман', 2150.23, 15),
         'description': 'Художественный роман',
         'name': 'Война и мир',
         'quantity': 15}
+    assert repr(create_product_book_1) == "Product('Война и мир', 'Художественный роман', 2150.23, 15)"
+    print(repr(create_product_book_1))
 
 
 def test_create_product():

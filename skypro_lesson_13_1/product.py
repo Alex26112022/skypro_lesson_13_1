@@ -1,4 +1,8 @@
-class Product:
+from skypro_lesson_13_1.abc_product import AbcProduct
+from skypro_lesson_13_1.mixin_log import MixinLog
+
+
+class Product(MixinLog, AbcProduct):
     """ Описывает товары. """
     name: str
     description: str
@@ -7,6 +11,7 @@ class Product:
     color: str
 
     def __init__(self, name, description, price, quantity, color=None):
+        super().__init__(name, description, price, quantity)
         self.name = name
         self.description = description
         self.__price = price
