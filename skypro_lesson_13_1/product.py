@@ -1,4 +1,7 @@
-class Product:
+from skypro_lesson_13_1.abc_product import AbcProduct
+
+
+class Product(AbcProduct):
     """ Описывает товары. """
     name: str
     description: str
