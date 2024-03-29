@@ -16,8 +16,8 @@ class IterCategory:
         return self
 
     def __next__(self):
-        if self.index_product + 1 < len(self.category._get_products()):
+        if self.index_product + 1 < len(self.category.get_products()):
             self.index_product += 1
-            return self.category._get_products()[self.index_product]
+            return self.category.get_products()[self.index_product]
         else:
             raise StopIteration

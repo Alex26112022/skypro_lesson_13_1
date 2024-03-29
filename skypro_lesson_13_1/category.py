@@ -1,10 +1,11 @@
 from skypro_lesson_13_1.lawn_grass import LawnGrass
 from skypro_lesson_13_1.mixin_log import MixinLog
+from skypro_lesson_13_1.order_abc import OrderAbc
 from skypro_lesson_13_1.product import Product
 from skypro_lesson_13_1.smartphone import Smartphone
 
 
-class Category(MixinLog):
+class Category(MixinLog, OrderAbc):
     """ Описывает категории. """
     name: str
     description: str
@@ -21,7 +22,8 @@ class Category(MixinLog):
         self.description = description
         if isinstance(products, list) and len(products) == 0:
             self.__products = products
-        elif isinstance(products, list) and len(products) > 0 and all(map(lambda x: isinstance(x, Product), products)):
+        elif isinstance(products, list) and len(products) > 0 and all(
+                map(lambda x: isinstance(x, Product), products)):
             self.__products = products
         else:
             raise TypeError('products может быть списком с объектами класса'
@@ -43,7 +45,7 @@ class Category(MixinLog):
             raise TypeError('Добавить можно только объект класса Product и '
                             'его наследников!!!')
 
-    def _get_products(self):
+    def get_products(self):
         """ Возвращает список товаров. """
         return self.__products
 
