@@ -3,8 +3,10 @@ from abc import ABC, abstractmethod
 
 class AbcProduct:
     """ Абстракция класса продукты. """
+
+    @classmethod
     @abstractmethod
-    def create_product(self):
+    def create_product(cls, name, description, price, quantity):
         pass
 
     @abstractmethod
