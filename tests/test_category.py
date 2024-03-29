@@ -28,6 +28,16 @@ def test_init_category(create_category_toy, create_category_smartphone,
 
     assert create_category_smartphone.name == 'Смартфоны'
     assert create_category_grass.name == 'Трава газонная'
+    assert repr(create_category_toy) == (
+        "Category('Игрушки', 'Сфера "
+        "развлечений', [Product('мяч', 'спорт-инвентарь', 5000.4, 42), "
+        "Product('шахматы', 'настольные игры', 2100.0, 14), "
+        "Product('Xbox', 'электроника', 40000.0, 5)])")
+    assert repr(create_category_grass) == (
+            "Category('Трава газонная', 'Товары для дома', [LawnGrass('Трава обычная', "
+            "'для гольфа', 10000, 15, 'green', 'England', 360), LawnGrass('Трава "
+            "волшебная', 'не подходит для гольфа', 20000, 40, 'yellow', 'Kazakhstan', "
+            '200)])')
 
 
 def test_init_category_error():
@@ -76,7 +86,8 @@ def test_add_product_error(create_category_smartphone):
         create_category_smartphone.add_products(ClassTest(
             'test_name', 'test description', 100, 10
         ))
-    assert type_error.value.args[0] == 'Добавить можно только объект класса Product и его наследников!!!'
+    assert type_error.value.args[
+               0] == 'Добавить можно только объект класса Product и его наследников!!!'
 
 
 def test_prod(create_category_toy):

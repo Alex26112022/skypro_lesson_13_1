@@ -1,9 +1,10 @@
 from skypro_lesson_13_1.lawn_grass import LawnGrass
+from skypro_lesson_13_1.mixin_log import MixinLog
 from skypro_lesson_13_1.product import Product
 from skypro_lesson_13_1.smartphone import Smartphone
 
 
-class Category:
+class Category(MixinLog):
     """ Описывает категории. """
     name: str
     description: str
@@ -15,6 +16,7 @@ class Category:
     count_products = 0  # Счетчик уникальных товаров.
 
     def __init__(self, name, description, products):
+        super().__init__(name, description, products)
         self.name = name
         self.description = description
         if isinstance(products, list) and len(products) == 0:
