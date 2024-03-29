@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class AbcProduct:
+class AbcProduct(ABC):
     """ Абстракция класса продукты. """
 
     @classmethod
