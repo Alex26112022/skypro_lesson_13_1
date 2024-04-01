@@ -1,5 +1,6 @@
 from skypro_lesson_13_1.lawn_grass import LawnGrass
 from skypro_lesson_13_1.mixin_log import MixinLog
+from skypro_lesson_13_1.my_exception import MyException
 from skypro_lesson_13_1.order_abc import OrderAbc
 from skypro_lesson_13_1.product import Product
 from skypro_lesson_13_1.smartphone import Smartphone
@@ -37,20 +38,27 @@ class Category(MixinLog, OrderAbc):
 
     def add_products(self, new_product: Product):
         """ Добавляет товар. """
-        if isinstance(new_product, Product):
-            if new_product.quantity == 0:
-                raise ValueError('Товар с нулевым количеством не может '
-                                 'быть добавлен!')
-            for el in self.__products:
-                if new_product.name.lower() == el.name.lower():
-                    el.quantity += new_product.quantity
-                    el.price = max(el.price, new_product.price)
-                    return
-            self.__products.append(new_product)
-            Category.count_products += 1
+        try:
+            if isinstance(new_product, Product):
+                if new_product.quantity == 0:
+                    raise MyException()
+                    # raise ValueError('Товар с нулевым количеством не может быть добавлен!')
+                for el in self.__products:
+                    if new_product.name.lower() == el.name.lower():
+                        el.quantity += new_product.quantity
+                        el.price = max(el.price, new_product.price)
+                        return
+                self.__products.append(new_product)
+                Category.count_products += 1
+            else:
+                raise TypeError('Добавить можно только объект класса Product и '
+                                'его наследников!!!')
+        except MyException as ex:
+            print(ex)
         else:
-            raise TypeError('Добавить можно только объект класса Product и '
-                            'его наследников!!!')
+            print('Товар добавлен!')
+        finally:
+            print('Обработка добавления товара завершена!')
 
     def get_products(self):
         """ Возвращает список товаров. """
