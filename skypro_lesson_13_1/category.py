@@ -25,6 +25,10 @@ class Category(MixinLog, OrderAbc):
         elif isinstance(products, list) and len(products) > 0 and all(
                 map(lambda x: isinstance(x, Product), products)):
             self.__products = products
+            for el in self.__products:
+                if el.quantity == 0:
+                    raise ValueError('Товар с нулевым количеством не может '
+                                     'быть добавлен!')
         else:
             raise TypeError('products может быть списком с объектами класса'
                             'Product и его наследниками!!!')
@@ -34,6 +38,9 @@ class Category(MixinLog, OrderAbc):
     def add_products(self, new_product: Product):
         """ Добавляет товар. """
         if isinstance(new_product, Product):
+            if new_product.quantity == 0:
+                raise ValueError('Товар с нулевым количеством не может '
+                                 'быть добавлен!')
             for el in self.__products:
                 if new_product.name.lower() == el.name.lower():
                     el.quantity += new_product.quantity
