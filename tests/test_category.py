@@ -34,16 +34,26 @@ def test_init_category(create_category_toy, create_category_smartphone,
         "Product('шахматы', 'настольные игры', 2100.0, 14), "
         "Product('Xbox', 'электроника', 40000.0, 5)])")
     assert repr(create_category_grass) == (
-            "Category('Трава газонная', 'Товары для дома', [LawnGrass('Трава обычная', "
-            "'для гольфа', 10000, 15, 'green', 'England', 360), LawnGrass('Трава "
-            "волшебная', 'не подходит для гольфа', 20000, 40, 'yellow', 'Kazakhstan', "
-            '200)])')
+        "Category('Трава газонная', 'Товары для дома', [LawnGrass('Трава обычная', "
+        "'для гольфа', 10000, 15, 'green', 'England', 360), LawnGrass('Трава "
+        "волшебная', 'не подходит для гольфа', 20000, 40, 'yellow', 'Kazakhstan', "
+        '200)])')
 
 
-def test_init_category_error():
+def test_init_category_error_1():
     """ Проверяет попытку неправильной инициализации категории. """
     with pytest.raises(TypeError):
         assert Category('test_name', 'test_description', 'test_str')
+
+
+def test_init_category_error_2():
+    """ Проверка инициализации при нулевом количестве товара. """
+    with pytest.raises(ValueError) as info:
+        Category('name', 'description',
+                 [Product('name', 'description',
+                          2000, 0)])
+    assert info.value.args[0] == ('Товар с нулевым количеством не может быть '
+                                  'добавлен!')
 
 
 def test_add_products(create_category_book, create_category_smartphone,
@@ -80,14 +90,22 @@ def test_add_products(create_category_book, create_category_smartphone,
         create_category_grass) == 'Трава газонная, количество продуктов: 95 шт.'
 
 
-def test_add_product_error(create_category_smartphone):
+def test_add_product_error_1(create_category_smartphone):
     """ Проверяет попытку добавить посторонний объект. """
     with pytest.raises(TypeError) as type_error:
         create_category_smartphone.add_products(ClassTest(
             'test_name', 'test description', 100, 10
         ))
-    assert type_error.value.args[
-               0] == 'Добавить можно только объект класса Product и его наследников!!!'
+    assert type_error.value.args[0] == 'Добавить можно только объект класса Product и его наследников!!!'
+
+
+# def test_add_product_error_2(create_category_book):
+#     """ Проверяет попытку добавить объект с нулевым количеством. """
+#     with pytest.raises(ValueError) as info:
+#         create_category_book.add_products(Product('name',
+#                                                   'description',
+#                                                   3000, 0))
+#         assert info.value.args[0] == 'Товар с нулевым количеством не может быть добавлен!'
 
 
 def test_prod(create_category_toy):
@@ -141,3 +159,10 @@ def test_len_lawn_grass(create_category_grass):
     Проверяет общее количество товаров на складе для категории трава газонная.
     """
     assert len(create_category_grass) == 55
+
+
+def test_get_medium_price(create_category_book):
+    """ Проверяет метод, возвращающий средний ценник всех товаров. """
+    assert create_category_book.get_medium_price() == 2575.365
+    new_cat = Category('name', 'description', [])
+    assert new_cat.get_medium_price() == 0
