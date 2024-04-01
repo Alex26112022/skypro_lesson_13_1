@@ -65,6 +65,15 @@ class Category(MixinLog, OrderAbc):
                             f' {el.quantity} шт.\n')
         return info_str
 
+    def get_medium_price(self):
+        """ Возвращает средний ценник всех товаров. """
+        sum_of_prices = sum(map(lambda x: x.price, self.__products))
+        try:
+            medium_price = sum_of_prices / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+        return medium_price
+
     def __len__(self):
         """
         Возвращает общее количество товаров заданной категории на складе.

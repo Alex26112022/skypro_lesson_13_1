@@ -159,3 +159,10 @@ def test_len_lawn_grass(create_category_grass):
     Проверяет общее количество товаров на складе для категории трава газонная.
     """
     assert len(create_category_grass) == 55
+
+
+def test_get_medium_price(create_category_book):
+    """ Проверяет метод, возвращающий средний ценник всех товаров. """
+    assert create_category_book.get_medium_price() == 2575.365
+    new_cat = Category('name', 'description', [])
+    assert new_cat.get_medium_price() == 0
