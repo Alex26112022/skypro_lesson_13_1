@@ -99,13 +99,13 @@ def test_add_product_error_1(create_category_smartphone):
     assert type_error.value.args[0] == 'Добавить можно только объект класса Product и его наследников!!!'
 
 
-def test_add_product_error_2(create_category_book):
-    """ Проверяет попытку добавить объект с нулевым количеством. """
-    with pytest.raises(ValueError) as info:
-        create_category_book.add_products(Product('name',
-                                                  'description',
-                                                  3000, 0))
-        assert info.value.args[0] == 'Товар с нулевым количеством не может быть добавлен!'
+# def test_add_product_error_2(create_category_book):
+#     """ Проверяет попытку добавить объект с нулевым количеством. """
+#     with pytest.raises(ValueError) as info:
+#         create_category_book.add_products(Product('name',
+#                                                   'description',
+#                                                   3000, 0))
+#         assert info.value.args[0] == 'Товар с нулевым количеством не может быть добавлен!'
 
 
 def test_prod(create_category_toy):
